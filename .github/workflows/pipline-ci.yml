@@ -22,3 +22,16 @@ jobs:
             - name: run unit tests
               run: |
                 mvn clean verify
+                
+            - name: Setup Java JDK
+              uses: actions/setup-java@v4.2.1
+              with:
+                java-version: '17'
+                distribution: 'temurin'   
+            - name: Analisis SonarCloud
+              run: |
+                mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar \
+                -Dsonar.token=${{ secrets.TOKEN_SONAR }} \
+                -Dsonar.host.url=https://sonarcloud.io \
+                -Dsonar.organization=leonardonorambuena \
+                -Dsonar.projectKey=leonardonorambuena_microservicio-java 
