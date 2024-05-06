@@ -21,4 +21,4 @@ jobs:
 
             - name: run unit tests
               run: |
-                mvn package test
+                mvn clean verify
