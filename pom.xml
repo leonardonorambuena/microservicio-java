@@ -48,6 +48,12 @@
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.12</version>
 				<executions>
+					<execution>
+						<id>prepare-coverage</id> <!-- Unique ID -->
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
 					<execution>	
 						<goals>
 							<goal>check</goal>
@@ -55,11 +61,12 @@
 						<configuration>
 							<rules>
 								<rule>
+									<element>BUNDLE</element>
 									<limits>
 										<limit>
 											<counter>INSTRUCTION</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>85.0%</minimum>
+											<minimum>0.85</minimum>
 										</limit>
 									</limits>
 								</rule>
@@ -73,6 +80,12 @@
 						<goals>
 							<goal>report</goal>
 						</goals>
+						<configuration>
+							<reports>
+								<report>xml</report> <!-- Generates an XML report -->
+							</reports>
+							<outputDirectory>${project.build.directory}/jacoco-reports</outputDirectory>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
