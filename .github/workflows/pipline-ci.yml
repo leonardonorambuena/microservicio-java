@@ -1,9 +1,11 @@
-name: CI
+name: CI Devops
+
 on:
     push:
-        jobs:
-            build:
-                runs-on: ubuntu-latest
-                steps:
-                    - name: Clonacion del codigo
-                      uses: actions/checkout@v4
+
+jobs:
+    build:
+        runs-on: [ubuntu-latest]
+        steps:
+            - name: checkout code
+            uses: actions/checkout@v2
