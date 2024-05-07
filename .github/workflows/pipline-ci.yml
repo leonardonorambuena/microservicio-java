@@ -36,16 +36,11 @@ jobs:
                 -Dsonar.host.url=https://sonarcloud.io \
                 -Dsonar.organization=leonardonorambuena \
                 -Dsonar.projectKey=leonardonorambuena_microservicio-java
-            # Triggering SonarQube analysis as results of it are required by Quality Gate check.
-            - name: SonarQube Scan
-              uses: sonarsource/sonarqube-scan-action@master
-              env:
-                SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }} 
-              # Check the Quality Gate status.
-            - name: SonarQube Quality Gate check
-              id: sonarqube-quality-gate-check
-              uses: sonarsource/sonarqube-quality-gate-action@master
-                # Force to fail step after specific time.
-              timeout-minutes: 5
+
+            - name: SonarQube check gate
+              uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+              with:
+                scanMetadataReportFile: target/sonar/report-task.txt
               env:
                 SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }}
+                SONAR_HOST_URL: https://sonarcloud.io
