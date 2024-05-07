@@ -42,4 +42,4 @@ jobs:
               with:
                 scanMetadataReportFile: target/sonar/report-task.txt
                 env:
-                SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }}
+                TOKEN_SONAR: ${{ secrets.TOKEN_SONAR }}
