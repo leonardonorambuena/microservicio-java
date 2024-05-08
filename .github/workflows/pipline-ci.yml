@@ -37,6 +37,13 @@ jobs:
                 -Dsonar.organization=leonardonorambuena \
                 -Dsonar.projectKey=leonardonorambuena_microservicio-java
 
+            # Triggering SonarQube analysis as results of it are required by Quality Gate check.
+            - name: SonarQube Scan
+              uses: sonarsource/sonarqube-scan-action@master
+              env:
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                SONAR_HOST_URL: https://sonarcloud.io
+
             - name: SonarQube check gate
               uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
               with:
