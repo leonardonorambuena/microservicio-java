@@ -23,10 +23,8 @@ kind: Service
 metadata:
   name: service-ms-java-devops
 spec:
-  type: NodePort
   ports:
   - port: 8080
     targetPort: 8080
-    nodePort: 32000
   selector:
     app: ms-java-devops
