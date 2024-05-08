@@ -75,6 +75,11 @@ jobs:
                 platforms: linux/amd64,linux/arm64
                 push: true
                 tags: ${{ secrets.DOCKER_USER }}/devops-foundation:latest
+            
+            - name: Postman Testing
+              run: | 
+                postman login --with-api-key ${{ secrets.TOKEN_POSTMAN }}
+                postman collection run ${{ secrets.POSTMAN_COLLECTION }}
                 
 
     deploy:
