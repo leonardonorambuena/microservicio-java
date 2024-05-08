@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-java-devops
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ms-java-devops
+  template:
+    metadata:
+      labels:
+        app: ms-java-devops
+    spec:
+      containers:
+      - name: ms-java-devops
+        image: lnorambuena/devops-foundation:latest
+        ports:
+        - containerPort: 8080
