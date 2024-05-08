@@ -2,6 +2,8 @@ name: CI Devops
 
 on:
     push:
+      branches:
+        - "feature-ms-leonardoNorambuena-mensaje"
 
 jobs:
     build:
