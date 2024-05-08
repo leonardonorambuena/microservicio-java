@@ -76,12 +76,8 @@ jobs:
                 push: true
                 tags: ${{ secrets.DOCKER_USER }}/devops-foundation:latest
             
-            - name: Postman Testing
-              run: | 
-                postman login --with-api-key ${{ secrets.TOKEN_POSTMAN }}
-                postman collection run ${{ secrets.POSTMAN_COLLECTION }}
+            
                 
-
     deploy:
         needs: build
         runs-on: self-hosted
@@ -92,3 +88,14 @@ jobs:
             - name: Despliegue del micro servicio
               run: |
                 kubectl apply -f deploy.yaml
+
+    testing:
+      needs: deploy
+      runs-on: self-hosted
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Postman Testing
+          run: | 
+            postman login --with-api-key ${{ secrets.TOKEN_POSTMAN }}
+            postman collection run ${{ secrets.POSTMAN_COLLECTION }}
