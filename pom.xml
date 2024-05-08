@@ -54,6 +54,13 @@
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
 					<execution>	
 						<goals>
 							<goal>check</goal>
@@ -73,20 +80,7 @@
 							</rules>
 						</configuration>
 					</execution>
-					<!-- attached to Maven test phase -->
-					<execution>
-						<id>report</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-						<configuration>
-							<reports>
-								<report>xml</report> <!-- Generates an XML report -->
-							</reports>
-							<outputDirectory>${project.build.directory}/jacoco-reports</outputDirectory>
-						</configuration>
-					</execution>
+					
 				</executions>
 			</plugin>
 		</plugins>
