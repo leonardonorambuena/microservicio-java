@@ -23,6 +23,17 @@ jobs:
               run: |
                 mvn clean verify
 
+            - name: Jacoco report
+              run: |
+                mvn jacoco:report
+        
+            - name: jacoco report publish
+              uses: madrapps/jacoco-report@v1.6.1
+              with:
+                paths: ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
+                token: ${{ secrets.TOKEN_JACOCO }}
+                min-coverage-overall: 70
+
             - name: Setup Java JDK
               uses: actions/setup-java@v4.2.1
               with:
@@ -37,12 +48,6 @@ jobs:
                 -Dsonar.organization=leonardonorambuena \
                 -Dsonar.projectKey=leonardonorambuena_microservicio-java
 
-            # Triggering SonarQube analysis as results of it are required by Quality Gate check.
-            - name: SonarQube Scan
-              uses: sonarsource/sonarqube-scan-action@master
-              env:
-                SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }}
-                SONAR_HOST_URL: https://sonarcloud.io
 
             - name: SonarQube check gate
               uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
