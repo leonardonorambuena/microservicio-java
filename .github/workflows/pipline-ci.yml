@@ -99,3 +99,6 @@ jobs:
           run: | 
             postman login --with-api-key ${{ secrets.TOKEN_POSTMAN }}
             postman collection run ${{ secrets.POSTMAN_COLLECTION }}
+        - name: JMeter Testing
+          run: | 
+            jmeter -n -t performance_test.jmx -l Summary-Report.jtl

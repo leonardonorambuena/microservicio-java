@@ -1,2 +1,4 @@
 .gradle
 bin
+jmeter.log
+Summary-Report.jtl
